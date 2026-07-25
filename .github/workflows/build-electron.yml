@@ -28,12 +28,11 @@ jobs:
         run: npm install
 
       - name: Download All Backend Files from Release
+        shell: bash # THÊM DÒNG NÀY ĐỂ ÉP CHẠY BẰNG BASH TRÊN WINDOWS
         env:
-          # PAT_TOKEN rất quan trọng vì bạn tải từ repo khác (privatepdf-backend)
           GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           mkdir -p backend-temp
-          # Dùng GitHub CLI tải toàn bộ file từ tag 'backend-latest'
           gh release download backend-latest \
             --repo longpham2211/privatepdf-backend \
             --dir backend-temp \
