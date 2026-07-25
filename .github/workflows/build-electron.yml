@@ -27,21 +27,23 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Download All Backend Artifacts
-        uses: dawidd6/action-download-artifact@v3
-        with:
-          github_token: ${{ secrets.PAT_TOKEN }}
-          repo: longpham2211/privatepdf-backend
-          workflow: build.yml
-          workflow_conclusion: ""
-          path: backend-temp/
+      - name: Download All Backend Files from Release
+        env:
+          # PAT_TOKEN rất quan trọng vì bạn tải từ repo khác (privatepdf-backend)
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          mkdir -p backend-temp
+          # Dùng GitHub CLI tải toàn bộ file từ tag 'backend-latest'
+          gh release download backend-latest \
+            --repo longpham2211/privatepdf-backend \
+            --dir backend-temp \
+            --pattern "*"
         continue-on-error: true
 
       - name: Re-organize Backend Files & Make Executable
         shell: bash
         run: |
           mkdir -p backend
-          # Tới từng thư mục con lấy file đem ra ngoài backend/
           if [ -d "backend-temp" ]; then
             find backend-temp -type f -exec mv {} backend/ \;
             rm -rf backend-temp
