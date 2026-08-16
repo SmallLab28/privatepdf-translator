@@ -25,7 +25,7 @@
     "wasm-pack": "0.13.1"
   },
   "name": "privatepdf-translator",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "PrivatePDF Desktop App",
   "main": "main.cjs",
   "repository": {
@@ -50,6 +50,12 @@
     "appId": "com.privatepdf.app",
     "productName": "Privatepdf translator",
     "artifactName": "Privatepdf-translator-setup-${arch}.${ext}",
+    "protocols": {
+      "name": "PrivatePDF Protocol",
+      "schemes": [
+        "privatepdf"
+      ]
+    },
     "publish": [
       {
         "provider": "github",
