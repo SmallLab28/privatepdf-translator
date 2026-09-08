@@ -1,8 +1,10 @@
 {
-    "files.associations": {
-        "vector": "cpp",
-        "cstring": "cpp"
+    "files.exclude": {
+        "**/backend/models": true,
+        "**/*.gguf": true,
+        "**/*.bin": true
     },
-    "liveServer.settings.port": 5510,
-    "livePreview.defaultPreviewPath": "/pdftools/chatpdf/chat-pdf.html"
+    "search.exclude": {
+        "**/backend/models": true
+    }
 }

@@ -1430,7 +1430,8 @@ body.dark-mode #settings-overlay .ai-google-info-card {
     z-index: 100;
     display: none;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    max-height: 250px;
+    overflow-y: auto;
 }
 
 .custom-ai-select.open .custom-ai-select-options {
@@ -1472,4 +1473,18 @@ body.dark-mode .custom-ai-option:hover {
 body.dark-mode .ai-icon-img[alt="ChatGPT"],
 body.dark-mode .ai-icon-img[alt="OpenAI"] {
     filter: invert(1) brightness(2);
+}
+
+.custom-ai-select-options::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-ai-select-options::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-ai-select-options::-webkit-scrollbar-thumb {
+    background: var(--set-border);
+    border-radius: 10px;
+}
+.custom-ai-select-options::-webkit-scrollbar-thumb:hover {
+    background: var(--set-text-secondary);
 }
