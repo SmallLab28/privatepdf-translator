@@ -98,8 +98,7 @@
     "appx": {
       "applicationId": "PrivatepdfTranslator",
       "identityName": "PrivatepdfTranslator",
-      "publisherDisplayName": "PrivatePDF",
-      "addFullTrust": true
+      "publisherDisplayName": "PrivatePDF"
     },
     "mac": {
       "target": [
