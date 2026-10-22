@@ -25,7 +25,7 @@
     "wasm-pack": "0.13.1"
   },
   "name": "privatepdf-translator",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "PrivatePDF Desktop App",
   "main": "main.cjs",
   "repository": {
@@ -97,8 +97,10 @@
     },
     "appx": {
       "applicationId": "PrivatepdfTranslator",
-      "identityName": "PrivatepdfTranslator",
-      "publisherDisplayName": "smallLab28 software"
+      "identityName": "SmallLab28software.Privatepdf-translator",
+      "publisher": "CN=B87FB6F2-C305-459D-B495-37B2236ABDF0",
+      "publisherDisplayName": "smallLab28 software",
+      "displayName": "Privatepdf-translator"
     },
     "mac": {
       "target": [
