@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /*tiny*
-Disallow: /components/
-Sitemap: https://privatepdf.tech/sitemap.xml

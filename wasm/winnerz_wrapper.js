@@ -316,6 +316,16 @@ export class Document {
     return JSON.parse(this._raw.getPageFontBasenames(pageIndex));
   }
 
+  get_fonts(pageIndex = 0) {
+    this._assert_open();
+    return this._raw.getFonts(pageIndex);
+  }
+
+  extract_font(fontObjId) {
+    this._assert_open();
+    return this._raw.extractFont(fontObjId);
+  }
+
   // ── Cache ───────────────────────────────────────────────────────────────────
 
   clear_page_cache() {

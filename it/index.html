@@ -660,7 +660,7 @@
       });
 
       function bindSupabaseAuthListener(attempt) {
-        const client = window.supabaseClient;
+        const client = window.supabaseClient || window.supabase;
         if (client && client.auth) {
           client.auth.getSession().then(({ data }) => {
             if (data?.session?.user) {

@@ -86,6 +86,8 @@ jobs:
         with:
           files: |
             dist/*.exe
+            dist/*.msix
+            dist/*.appx
             dist/*.dmg
             dist/*.AppImage
             dist/*.snap
