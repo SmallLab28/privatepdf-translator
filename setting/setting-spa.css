@@ -2,8 +2,10 @@
    SETTINGS MODULE - STRICTLY SCOPED
    ========================================== */
 
-/* ALL VARIABLES NOW STRICTLY INSIDE #settings-overlay */
-#settings-overlay {
+/* ALL VARIABLES SCOPED TO ROOT, #settings-overlay AND MODAL OVERLAYS */
+:root,
+#settings-overlay,
+.glossary-modal-overlay {
     --sidebar-width: 260px;
     --header-height: 80px;
 
@@ -27,9 +29,12 @@
 }
 
 /* Dark Mode Scoping */
-body.dark-mode #settings-overlay {
+body.dark-mode,
+body.dark-mode #settings-overlay,
+body.dark-mode .glossary-modal-overlay,
+.glossary-modal-overlay.dark-mode-modal {
     --set-bg-primary: #191919;
-    --set-bg-secondary: #191919;
+    --set-bg-secondary: #1e1e1e;
     --set-border: #495057;
     --set-text-primary: #f8f9fa;
     --set-text-secondary: #adb5bd;
@@ -37,11 +42,69 @@ body.dark-mode #settings-overlay {
     --set-accent-light: #3a3a3a;
     --set-danger: #ef4444;
     --set-danger-light: rgba(239, 68, 68, 0.15);
-    --set-card-bg: #191919;
+    --set-card-bg: #1e1e1e;
     --set-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     --set-premium-gold: #facc15;
     --set-premium-bg: #191919;
     --set-premium-border: #854d0e;
+}
+
+/* --- GLOSSARY MODAL DEDICATED STYLES --- */
+.glossary-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.glossary-modal-card {
+    background: #ffffff !important;
+    background: var(--set-card-bg, #ffffff) !important;
+    color: #0f172a !important;
+    color: var(--set-text-primary, #0f172a) !important;
+    border: 1px solid #e2e8f0;
+    border: 1px solid var(--set-border, #e2e8f0);
+    border-radius: 14px;
+    width: 90%;
+    max-width: 440px;
+    padding: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+}
+
+body.dark-mode .glossary-modal-card,
+.glossary-modal-overlay.dark-mode-modal .glossary-modal-card {
+    background: #1e1e1e !important;
+    color: #f8f9fa !important;
+    border-color: #444444 !important;
+}
+
+.glossary-modal-card input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    border: 1px solid var(--set-border, #e2e8f0);
+    background-color: #f8fafc;
+    background-color: var(--set-bg-primary, #f8fafc);
+    color: #0f172a;
+    color: var(--set-text-primary, #0f172a);
+    font-size: 14px;
+    outline: none;
+}
+
+body.dark-mode .glossary-modal-card input[type="text"],
+.glossary-modal-overlay.dark-mode-modal .glossary-modal-card input[type="text"] {
+    background-color: #141414;
+    color: #f8f9fa;
+    border-color: #444444;
 }
 
 /* --- OVERLAY CONTAINER --- */
@@ -258,7 +321,8 @@ body.dark-mode #settings-overlay .sidebar-menu-link.active svg {
     background: var(--set-bg-primary);
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    min-width: 0;
 }
 
 #settings-overlay .content-section {
@@ -270,6 +334,20 @@ body.dark-mode #settings-overlay .sidebar-menu-link.active svg {
 #settings-overlay .content-section.active {
     display: block !important;
     animation: settingsSlideUp 0.3s ease-out;
+}
+
+#settings-overlay #tab-glossary,
+#settings-overlay #tab-glossary.active {
+    width: 100% !important;
+    max-width: 100% !important;
+    align-self: stretch !important;
+    box-sizing: border-box !important;
+}
+
+#settings-overlay #tab-glossary .settings-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
 }
 
 @keyframes settingsSlideUp {
@@ -1487,4 +1565,18 @@ body.dark-mode .ai-icon-img[alt="OpenAI"] {
 }
 .custom-ai-select-options::-webkit-scrollbar-thumb:hover {
     background: var(--set-text-secondary);
+}
+
+/* --- Glossary Spinner --- */
+@keyframes glossarySpin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.glossary-loading-spinner {
+    animation: glossarySpin 0.8s linear infinite;
 }
